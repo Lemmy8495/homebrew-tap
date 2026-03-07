@@ -1,6 +1,4 @@
 class Woist < Formula
-  include Language::Python::Virtualenv
-
   desc "CLI tool to analyze IP addresses, domains and URLs"
   homepage "https://github.com/Lemmy8495/woist"
   url "https://github.com/Lemmy8495/woist/archive/refs/tags/v6.0.1.tar.gz"
@@ -15,7 +13,17 @@ class Woist < Formula
   end
 
   def install
-    virtualenv_install_with_resources
+    python = "python3"
+    xy = Language::Python.major_minor_version python
+    site_packages = libexec/"lib/python#{xy}/site-packages"
+    ENV.prepend_create_path "PYTHONPATH", site_packages
+
+    resource("dnspython").stage do
+      system python, "-m", "pip", "install", *std_pip_args(prefix: libexec), "."
+    end
+
+    libexec.install "woist"
+    (bin/"woist").write_env_script libexec/"woist", PYTHONPATH: ENV.fetch("PYTHONPATH")
   end
 
   test do
