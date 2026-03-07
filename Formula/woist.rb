@@ -8,8 +8,8 @@ class Woist < Formula
   depends_on "python"
 
   resource "dnspython" do
-    url "https://files.pythonhosted.org/packages/source/d/dnspython/dnspython-2.8.0.tar.gz"
-    sha256 "181d3c6996452cb1189c4046c61599b84a5a86e099562ffde77d26984ff26d0f"
+    url "https://files.pythonhosted.org/packages/ba/5a/18ad964b0086c6e62e2e7500f7edc89e3faa45033c71c1893d34eed2b2de/dnspython-2.8.0-py3-none-any.whl"
+    sha256 "01d9bbc4a2d76bf0db7c1f729812ded6d912bd318d3b1cf81d30c0f845dbf3af"
   end
 
   def install
@@ -18,9 +18,7 @@ class Woist < Formula
     site_packages = libexec/"lib/python#{xy}/site-packages"
     ENV.prepend_create_path "PYTHONPATH", site_packages
 
-    resource("dnspython").stage do
-      system python, "-m", "pip", "install", *std_pip_args(prefix: libexec), "."
-    end
+    system python, "-m", "pip", "install", "--no-deps", "--prefix=#{libexec}", resource("dnspython").cached_download
 
     libexec.install "woist"
     (bin/"woist").write_env_script libexec/"woist", PYTHONPATH: ENV.fetch("PYTHONPATH")
