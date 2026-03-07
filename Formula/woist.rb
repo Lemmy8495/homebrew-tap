@@ -18,7 +18,11 @@ class Woist < Formula
     site_packages = libexec/"lib/python#{xy}/site-packages"
     ENV.prepend_create_path "PYTHONPATH", site_packages
 
-    system python, "-m", "pip", "install", "--no-deps", "--prefix=#{libexec}", resource("dnspython").cached_download
+    resource("dnspython").stage do
+      wheel = Dir["*.whl"].first
+      odie "dnspython wheel not found in staged resource" if wheel.nil?
+      system python, "-m", "pip", "install", "--no-deps", "--prefix=#{libexec}", wheel
+    end
 
     libexec.install "woist"
     (bin/"woist").write_env_script libexec/"woist", PYTHONPATH: ENV.fetch("PYTHONPATH")
