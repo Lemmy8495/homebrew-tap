@@ -1,8 +1,8 @@
 class Woist < Formula
   desc "Show the geographic location of an IP address or URL"
   homepage "https://github.com/Lemmy8495/woist"
-  url "https://github.com/Lemmy8495/woist/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "616f09e310a7df9b26b2b24e097cf1a3cd3ce2b4510e23427277bf9e7c2ca4f4"
+  url "https://github.com/Lemmy8495/woist/archive/refs/tags/v1.1.0.tar.gz"
+  sha256 "0c90dce765842c6c953aa19b09414bd16be339606a32a921b0910bf59554060c"
   license "MIT"
 
   def install
