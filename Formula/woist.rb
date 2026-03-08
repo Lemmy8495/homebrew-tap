@@ -1,8 +1,8 @@
 class Woist < Formula
   desc "CLI tool to analyze IP addresses, domains and URLs"
   homepage "https://github.com/Lemmy8495/woist"
-  url "https://github.com/Lemmy8495/woist/archive/refs/tags/v6.0.1.tar.gz"
-  sha256 "8606fbe589d16731c18bb8ba2b5482d3d11cebb57311dddf218efe6c2fa1dde8"
+  url "https://github.com/Lemmy8495/woist/archive/refs/tags/v6.1.0.tar.gz"
+  sha256 "6f65b2f9c883054c7aec0a97ddc39aa31fad35a71409e6fba91e28f3ddd37b18"
   license "MIT"
 
   depends_on "python"
