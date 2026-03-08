@@ -4,6 +4,7 @@ class Woist < Formula
   url "https://github.com/Lemmy8495/woist/archive/refs/tags/v6.1.0.tar.gz"
   sha256 "6f65b2f9c883054c7aec0a97ddc39aa31fad35a71409e6fba91e28f3ddd37b18"
   license "MIT"
+  revision 1
 
   depends_on "python"
 
@@ -24,7 +25,7 @@ class Woist < Formula
       system python, "-m", "pip", "install", "--no-deps", "--prefix=#{libexec}", wheel
     end
 
-    libexec.install "woist"
+    libexec.install "woist", "woistlib"
     (bin/"woist").write_env_script libexec/"woist", PYTHONPATH: ENV.fetch("PYTHONPATH")
   end
 
